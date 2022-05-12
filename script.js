@@ -59,8 +59,8 @@ hamburger.addModifier(CHEESE);
 hamburger.addModifier(POTATO);
 hamburger.addModifier(SPICE);
 
-console.log("Price with sauce: " + hamburger.getPrice())
-console.log("Calories with sauce: " + hamburger.getCalories())
+console.log("Price with sauce: " + hamburger.getPrice());
+console.log("Calories with sauce: " + hamburger.getCalories());
 
 // Второй вариант. Мне он нравится больше, тк можно выбирать количество начинок 1 строкой и не добавлять модификаторы
 // каждый раз, либо не вводить совсем. 
@@ -90,7 +90,7 @@ function Burger(burger, ...modifiers) {
 			return this.burger_size.calories + newCaloriesCount;
 		}
 	}
-}
+};
 
 const burger = new Burger(SIZE_LARGE, CHEESE, MAYONEZ, SPICE, POTATO, SALAD);
 
