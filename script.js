@@ -91,6 +91,8 @@ function Burger(burger, ...modifiers) {
 		}
 	}
 }
+
 const burger = new Burger(SIZE_LARGE, CHEESE, MAYONEZ, SPICE, POTATO, SALAD)
+
 console.log("Price with sauce: " + burger.getAnotherPrice())
 console.log("Calories with sauce: " + burger.getAnotherCalories())
