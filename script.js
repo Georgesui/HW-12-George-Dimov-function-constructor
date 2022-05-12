@@ -1,37 +1,31 @@
-// const burgerTypesInMenu = [
-// 	{
-// 		burgerSize: 'size_smaill',
-// 		price: 50 + ' UAH',
-// 		calories: 20 + ' calories'
-// 	},
-// 	{
-// 		burgerSize: 'size_medium',
-// 		price: 75 + ' UAH',
-// 		calories: 30 + ' calories'
-// 	},
-// 	{
-// 		burgerSize: 'size_large',
-// 		price: 100,
-// 		calories: 40
-// 	}];
+// Есть два вариант решения.
+// Вариант № 1
 
-// const findBurgerSize = (sizes) => {
-// 	return sizes.map((orderedBurgerSize) => {
-// 		console.log(orderedBurgerSize)
-// 		return orderedBurgerSize
-// 	})
-// }
+function Hamburger(sandwich) {
+	this.sandwich = sandwich;
+	this.modifiers = [];
+	this.getPrice = () => {
+		return this.sandwich.price
+	}
+	this.getCalories = () => {
+		return this.sandwich.calories
+	}
+	this.addModifier = (modification) => {
+		this.sandwich.price += modification.price;
+		this.sandwich.calories += modification.calories;
+		this.modifiers.push(modification);
+	}
+}
 
-
-const size_smaill = {
-	price: 50 + ' UAH',
-	calories: 20 + ' calories'
+const SIZE_SMALL = {
+	price: 50,
+	calories: 20
 };
-const size_medium = {
-	price: 75 + ' UAH',
-	calories: 30 + ' calories'
+const SIZE_MEDIUM = {
+	price: 75,
+	calories: 30
 };
-const size_large = {
+const SIZE_LARGE = {
 	price: 100,
 	calories: 40
 }
@@ -57,33 +51,46 @@ const MAYONEZ = {
 	calories: 5
 };
 
-function Hamburger(burger, ...modifiers) {
+const hamburger = new Hamburger(SIZE_SMALL);
+
+hamburger.addModifier(MAYONEZ);
+hamburger.addModifier(SALAD);
+hamburger.addModifier(CHEESE);
+hamburger.addModifier(POTATO);
+hamburger.addModifier(SPICE);
+
+console.log("Price with sauce: " + hamburger.getPrice())
+console.log("Calories with sauce: " + hamburger.getCalories())
+
+// Второй вариант. Мне он нравится больше, тк можно выбирать количество начинок 1 строкой и не добавлять модификаторы
+// каждый раз, либо не вводить совсем. 
+
+function Burger(burger, ...modifiers) {
 	this.burger_size = burger;
 	this.modification = modifiers;
-	console.log(this.modification)
 	if (this.modification.length === 0) {
-		this.getPrice = function () {
+		this.getAnotherPrice = function () {
 			return this.burger_size.price
 		}
-		this.getCalories = function () {
-			return this.burger_size.calories + this.modification.calories
+		this.getAnotherCalories = function () {
+			return this.burger_size.calories
 		}
 	}
 	else {
-		let newSum = this.modification.map((modifiers) => {
+		let newSumOfCalories = this.modification.map((modifiers) => {
 			return modifiers.price
 		}).reduce((acc, num) => acc + num)
-		let newCalories = this.modification.map((modifiers) => {
+		let newCaloriesCount = this.modification.map((modifiers) => {
 			return modifiers.calories
 		}).reduce((acc, num) => acc + num)
-		this.getPrice = function () {
-			return this.burger_size.price + newSum
+		this.getAnotherPrice = function () {
+			return this.burger_size.price + newSumOfCalories
 		}
-		this.getCalories = function () {
-			return this.burger_size.calories + newCalories
+		this.getAnotherCalories = function () {
+			return this.burger_size.calories + newCaloriesCount
 		}
 	}
 }
-const hamburger = new Hamburger(size_large, CHEESE, MAYONEZ)
-console.log(hamburger.getPrice())
-console.log(hamburger.getCalories())
+const burger = new Burger(SIZE_LARGE, CHEESE, MAYONEZ, SPICE, POTATO, SALAD)
+console.log("Price with sauce: " + burger.getAnotherPrice())
+console.log("Calories with sauce: " + burger.getAnotherCalories())
