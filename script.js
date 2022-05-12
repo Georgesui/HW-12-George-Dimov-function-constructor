@@ -5,17 +5,17 @@ function Hamburger(sandwich) {
 	this.sandwich = sandwich;
 	this.modifiers = [];
 	this.getPrice = () => {
-		return this.sandwich.price
+		return this.sandwich.price;
 	}
 	this.getCalories = () => {
-		return this.sandwich.calories
+		return this.sandwich.calories;
 	}
 	this.addModifier = (modification) => {
 		this.sandwich.price += modification.price;
 		this.sandwich.calories += modification.calories;
 		this.modifiers.push(modification);
 	}
-}
+};
 
 const SIZE_SMALL = {
 	price: 50,
@@ -28,7 +28,7 @@ const SIZE_MEDIUM = {
 const SIZE_LARGE = {
 	price: 100,
 	calories: 40
-}
+};
 
 const CHEESE = {
 	price: 10,
@@ -70,29 +70,29 @@ function Burger(burger, ...modifiers) {
 	this.modification = modifiers;
 	if (this.modification.length === 0) {
 		this.getAnotherPrice = function () {
-			return this.burger_size.price
+			return this.burger_size.price;
 		}
 		this.getAnotherCalories = function () {
-			return this.burger_size.calories
+			return this.burger_size.calories;
 		}
 	}
 	else {
 		let newSumOfCalories = this.modification.map((modifiers) => {
-			return modifiers.price
+			return modifiers.price;
 		}).reduce((acc, num) => acc + num)
 		let newCaloriesCount = this.modification.map((modifiers) => {
-			return modifiers.calories
+			return modifiers.calories;
 		}).reduce((acc, num) => acc + num)
 		this.getAnotherPrice = function () {
-			return this.burger_size.price + newSumOfCalories
+			return this.burger_size.price + newSumOfCalories;
 		}
 		this.getAnotherCalories = function () {
-			return this.burger_size.calories + newCaloriesCount
+			return this.burger_size.calories + newCaloriesCount;
 		}
 	}
 }
 
-const burger = new Burger(SIZE_LARGE, CHEESE, MAYONEZ, SPICE, POTATO, SALAD)
+const burger = new Burger(SIZE_LARGE, CHEESE, MAYONEZ, SPICE, POTATO, SALAD);
 
-console.log("Price with sauce: " + burger.getAnotherPrice())
-console.log("Calories with sauce: " + burger.getAnotherCalories())
+console.log("Price with sauce: " + burger.getAnotherPrice());
+console.log("Calories with sauce: " + burger.getAnotherCalories());
