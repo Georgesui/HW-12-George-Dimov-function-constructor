@@ -16,6 +16,7 @@ Hamburger.prototype.addModifier = function (modification) {
 	this.sandwich.calories += modification.calories;
 	this.modifiers.push(modification);
 }
+
 const SIZE_SMALL = {
 	price: 50,
 	calories: 20
@@ -56,6 +57,7 @@ const MAYONEZ = {
 };
 
 const hamburger = new Hamburger(SIZE_SMALL);
+
 hamburger.addModifier(MAYONEZ);
 hamburger.addModifier(SALAD);
 hamburger.addModifier(CHEESE);
